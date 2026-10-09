@@ -1,0 +1,6 @@
+plugins { id 'eclipse'; id 'idea'; id 'maven-publish'; id 'net.minecraftforge.gradle' version '[6.0,6.2)' }
+group='com.playerboss'; version='1.0.0'; base { archivesName='playerboss' }
+java.toolchain.languageVersion=JavaLanguageVersion.of(17)
+minecraft { mappings channel:'official', version:'1.20.1'; runs { configureEach { workingDirectory project.file('run'); mods { playerboss { source sourceSets.main } } }; client {}; server {} } }
+dependencies { minecraft 'net.minecraftforge:forge:1.20.1-47.4.5' }
+tasks.named('processResources', ProcessResources).configure { var props=[mod_id:'playerboss',mod_name:'Player Boss',mod_license:'MIT',mod_version:version,mod_authors:'Community',mod_description:'Boss NPC jogador customizavel']; inputs.properties props; filesMatching(['META-INF/mods.toml']) { expand props } }
